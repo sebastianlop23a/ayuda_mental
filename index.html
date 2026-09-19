@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Pausa es un blog de apoyo psicológico para entender lo que sientes y encontrar un siguiente paso amable.">
+	<title>Pausa | Apoyo psicológico</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--ink: #183b3f;
+			--muted: #607375;
+			--paper: #f8f4eb;
+			--white: #fffdf8;
+			--sun: #f5c84b;
+			--sun-soft: #fff1bd;
+			--teal: #1f7770;
+			--coral: #e9785d;
+			--lavender: #d9d2ee;
+			--line: #d8dfd8;
+			--shadow: 0 18px 45px rgba(24, 59, 63, 0.1);
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body {
+			margin: 0;
+			color: var(--ink);
+			background: var(--paper);
+			font-family: "DM Sans", sans-serif;
+			line-height: 1.5;
+		}
+		a { color: inherit; text-decoration: none; }
+		button { color: inherit; font: inherit; }
+		.shell { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+
+		header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			min-height: 78px;
+			border-bottom: 1px solid rgba(24, 59, 63, 0.13);
+		}
+		.brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.03em; }
+		.brand-mark {
+			display: grid; place-items: center; width: 32px; height: 32px;
+			background: var(--sun); border-radius: 50% 50% 50% 8px; transform: rotate(-9deg);
+			font-family: Fraunces, serif; font-size: 20px;
+		}
+		nav { display: flex; align-items: center; gap: 28px; font-size: 14px; color: var(--muted); }
+		nav a:hover { color: var(--teal); }
+		.nav-button, .button {
+			display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+			border: 0; border-radius: 999px; padding: 11px 17px; background: var(--teal); color: var(--white);
+			cursor: pointer; font-weight: 700; font-size: 13px; transition: transform .2s, background .2s;
+		}
+		.nav-button:hover, .button:hover { background: #155c58; transform: translateY(-2px); }
+		.menu-button { display: none; border: 0; background: transparent; font-size: 24px; cursor: pointer; }
+
+		.hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 70px; align-items: center; min-height: 500px; padding: 68px 0 72px; }
+		.eyebrow { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 18px; color: var(--coral); font-size: 12px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+		.eyebrow::before { content: ""; display: block; width: 28px; height: 2px; background: var(--coral); }
+		h1, h2, h3 { margin: 0; font-family: Fraunces, serif; font-weight: 600; letter-spacing: -0.045em; line-height: 1.05; }
+		h1 { max-width: 600px; font-size: clamp(46px, 7vw, 82px); }
+		h1 em { color: var(--teal); font-style: normal; }
+		.hero-copy { max-width: 500px; margin: 24px 0 28px; color: var(--muted); font-size: 17px; }
+		.hero-actions { display: flex; align-items: center; gap: 18px; }
+		.text-link { color: var(--teal); font-size: 14px; font-weight: 700; }
+		.text-link::after { content: "  ↗"; font-size: 18px; }
+		.hero-art { position: relative; min-height: 365px; }
+		.hero-art::before { content: ""; position: absolute; inset: 28px 35px 0 0; border-radius: 46% 54% 48% 52% / 52% 42% 58% 48%; background: var(--sun); }
+		.hero-art::after { content: ""; position: absolute; width: 125px; height: 125px; right: 3px; top: 0; border-radius: 50%; background: var(--lavender); }
+		.art-card { position: absolute; right: 45px; bottom: 15px; z-index: 1; width: min(310px, 76%); padding: 23px; border: 1px solid rgba(24,59,63,.12); border-radius: 14px; background: var(--white); box-shadow: var(--shadow); transform: rotate(3deg); }
+		.art-card .mini-label { color: var(--coral); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+		.art-card h3 { margin: 12px 0 20px; font-size: 29px; }
+		.breath-line { height: 42px; border-top: 2px solid var(--teal); border-radius: 50%; transform: skewY(-5deg); opacity: .85; }
+		.breath-line + .breath-line { margin-top: -22px; transform: skewY(5deg); border-color: var(--coral); }
+
+		.date-strip { padding: 15px 0; background: var(--ink); color: var(--white); }
+		.date-strip-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+		.date-strip strong { color: var(--sun); }
+		.date-strip p { margin: 0; font-size: 14px; }
+		.date-nav { display: flex; align-items: center; gap: 11px; color: #dce8df; font-size: 13px; }
+		.date-nav span { width: 8px; height: 8px; border-radius: 50%; background: var(--coral); }
+
+		section { padding: 88px 0; }
+		.section-heading { display: flex; align-items: end; justify-content: space-between; margin-bottom: 30px; }
+		.section-heading h2 { max-width: 520px; font-size: clamp(34px, 4vw, 54px); }
+		.section-heading p { max-width: 280px; margin: 0; color: var(--muted); font-size: 14px; }
+		.topics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+		.topic { min-height: 195px; padding: 24px; border-radius: 12px; }
+		.topic:nth-child(1) { background: var(--sun-soft); }
+		.topic:nth-child(2) { background: #d7ebe6; }
+		.topic:nth-child(3) { background: var(--lavender); }
+		.topic-icon { display: grid; place-items: center; width: 40px; height: 40px; margin-bottom: 30px; border-radius: 50%; background: var(--white); font-size: 19px; }
+		.topic h3 { margin-bottom: 8px; font-size: 26px; }
+		.topic p { max-width: 270px; margin: 0; color: var(--muted); font-size: 14px; }
+
+		.calendar-section { background: var(--white); }
+		.calendar-layout { display: grid; grid-template-columns: .82fr 1.18fr; gap: 70px; align-items: start; }
+		.calendar-layout h2 { font-size: clamp(38px, 5vw, 62px); }
+		.calendar-intro { margin: 20px 0 27px; color: var(--muted); }
+		.calendar-note { display: flex; gap: 12px; align-items: start; padding: 15px 0 0; border-top: 1px solid var(--line); font-size: 13px; }
+		.calendar-note b { color: var(--coral); }
+		.calendar { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--white); }
+		.calendar-top { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; background: var(--teal); color: var(--white); }
+		.calendar-top h3 { font-size: 24px; }
+		.calendar-top span { font-size: 12px; opacity: .8; }
+		.weekdays, .days { display: grid; grid-template-columns: repeat(7, 1fr); }
+		.weekdays { padding: 13px 17px 7px; color: var(--muted); font-size: 11px; font-weight: 700; text-align: center; text-transform: uppercase; }
+		.days { padding: 0 17px 19px; gap: 5px; }
+		.day { position: relative; display: grid; place-items: center; min-height: 50px; border: 1px solid transparent; border-radius: 9px; background: transparent; cursor: pointer; font-size: 13px; }
+		.day:hover, .day.active { border-color: var(--teal); background: #e7f1ed; }
+		.day.muted { color: #b8c0bb; }
+		.day.marked::after { content: ""; position: absolute; bottom: 6px; width: 4px; height: 4px; border-radius: 50%; background: var(--coral); }
+		.day.active { font-weight: 700; }
+		.date-detail { min-height: 76px; margin: 0 17px 17px; padding: 14px 16px; border-radius: 8px; background: var(--sun-soft); color: var(--ink); font-size: 13px; }
+		.date-detail strong { display: block; margin-bottom: 3px; color: var(--coral); font-size: 12px; }
+
+		.articles { display: grid; grid-template-columns: 1.2fr .8fr; gap: 17px; }
+		.article { position: relative; min-height: 245px; padding: 28px; border-radius: 12px; overflow: hidden; background: #d7ebe6; }
+		.article:first-child { background: var(--teal); color: var(--white); }
+		.article:first-child p { color: #d8ebe3; }
+		.article:nth-child(2) { background: var(--sun-soft); }
+		.article:nth-child(3) { background: var(--lavender); }
+		.article-tag { display: inline-block; margin-bottom: 48px; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; opacity: .75; }
+		.article h3 { max-width: 390px; font-size: 32px; }
+		.article p { max-width: 390px; margin: 12px 0 0; color: var(--muted); font-size: 14px; }
+		.article-arrow { position: absolute; right: 24px; bottom: 20px; font-size: 25px; }
+		.article:nth-child(2) h3, .article:nth-child(3) h3 { font-size: 25px; }
+
+		.support { display: grid; grid-template-columns: 1fr 1fr; gap: 42px; align-items: center; padding: 26px; border: 1px solid var(--line); border-radius: 12px; background: #f1e8df; }
+		.support h2 { font-size: clamp(32px, 4vw, 48px); }
+		.support p { max-width: 400px; margin: 14px 0 22px; color: var(--muted); font-size: 14px; }
+		.support-list { display: grid; gap: 10px; }
+		.support-item { display: flex; align-items: center; justify-content: space-between; padding: 17px 19px; border-radius: 8px; background: var(--white); font-size: 14px; }
+		.support-item span { color: var(--muted); font-size: 12px; }
+		footer { padding: 30px 0 42px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+		.footer-inner { display: flex; justify-content: space-between; gap: 20px; }
+
+		@media (max-width: 760px) {
+			.shell { width: min(100% - 28px, 560px); }
+			header { min-height: 68px; }
+			nav { display: none; position: absolute; top: 68px; right: 14px; left: 14px; z-index: 3; flex-direction: column; align-items: stretch; gap: 0; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--white); box-shadow: var(--shadow); }
+			nav.open { display: flex; }
+			nav a { padding: 12px; }
+			.nav-button { margin: 5px 0 0; }
+			.menu-button { display: block; }
+			.hero { grid-template-columns: 1fr; gap: 28px; min-height: auto; padding: 54px 0 55px; }
+			h1 { font-size: clamp(47px, 14vw, 72px); }
+			.hero-art { min-height: 290px; }
+			.hero-art::before { inset: 16px 10px 0 0; }
+			.art-card { right: 22px; bottom: 0; }
+			.date-strip-inner, .section-heading, .footer-inner { align-items: flex-start; flex-direction: column; }
+			section { padding: 62px 0; }
+			.topics, .calendar-layout, .articles, .support { grid-template-columns: 1fr; }
+			.calendar-layout { gap: 30px; }
+			.section-heading { gap: 17px; }
+			.article { min-height: 220px; }
+			.article-tag { margin-bottom: 36px; }
+			.support { padding: 22px; }
+		}
+
+		@media (max-width: 480px) {
+			.shell { width: calc(100% - 24px); }
+			.hero { padding-top: 40px; }
+			.hero-copy { font-size: 15px; }
+			.hero-actions { align-items: stretch; flex-direction: column; gap: 14px; }
+			.hero-actions .button { width: 100%; min-height: 48px; }
+			.hero-actions .text-link { padding: 4px 0; text-align: center; }
+			.hero-art { min-height: 245px; }
+			.art-card { right: 12px; width: 84%; padding: 18px; }
+			.art-card h3 { margin-bottom: 13px; font-size: 25px; }
+			.date-strip p { font-size: 13px; }
+			.date-nav { font-size: 12px; }
+			.topic { min-height: 165px; padding: 20px; }
+			.topic-icon { margin-bottom: 20px; }
+			.calendar-layout h2 { font-size: 39px; }
+			.weekdays { padding-right: 8px; padding-left: 8px; font-size: 10px; }
+			.days { padding-right: 8px; padding-left: 8px; gap: 3px; }
+			.day { min-height: 42px; font-size: 12px; }
+			.date-detail { margin-right: 8px; margin-left: 8px; font-size: 12px; }
+			.article { min-height: 205px; padding: 22px; }
+			.article h3, .article:nth-child(2) h3, .article:nth-child(3) h3 { font-size: 25px; }
+			.support-item { align-items: flex-start; flex-direction: column; gap: 4px; }
+			.support .button { width: 100%; min-height: 48px; }
+			footer { font-size: 11px; }
+		}
+	</style>
+</head>
+<body>
+	<div class="shell">
+		<header>
+			<a class="brand" href="#inicio" aria-label="Pausa, inicio"><span class="brand-mark">p</span> pausa</a>
+			<button class="menu-button" type="button" aria-label="Abrir menú" aria-expanded="false">☰</button>
+			<nav id="main-nav">
+				<a href="#explora">Explora</a>
+				<a href="#septiembre">Septiembre</a>
+				<a href="#recursos">Recursos</a>
+				<a class="nav-button" href="#apoyo">Necesito apoyo</a>
+			</nav>
+		</header>
+	</div>
+
+	<main id="inicio">
+		<div class="shell">
+			<section class="hero">
+				<div>
+					<p class="eyebrow">Un espacio para volver a ti</p>
+					<h1>Lo que sientes merece <em>un lugar.</em></h1>
+					<p class="hero-copy">Ideas claras y compañía sin juicios para atravesar los días difíciles. Empieza por una pequeña pausa.</p>
+					<div class="hero-actions">
+						<a class="button" href="#explora">Leer una pausa <span>→</span></a>
+						<a class="text-link" href="#septiembre">Ver septiembre</a>
+					</div>
+				</div>
+				<div class="hero-art" aria-label="Ilustración abstracta de una respiración tranquila">
+					<div class="art-card">
+						<span class="mini-label">Pausa de 60 segundos</span>
+						<h3>Inhala calma.<br>Exhala prisa.</h3>
+						<div class="breath-line"></div><div class="breath-line"></div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="date-strip">
+			<div class="shell date-strip-inner">
+				<p><strong>Septiembre 2026</strong> · un mes para cuidar tus conversaciones internas.</p>
+				<div class="date-nav"><span></span> Fechas para tener presentes</div>
+			</div>
+		</div>
+
+		<section id="explora">
+			<div class="shell">
+				<div class="section-heading">
+					<h2>Empieza por donde hoy te haga sentido.</h2>
+					<p>No tienes que resolverlo todo ahora. Elige una puerta de entrada.</p>
+				</div>
+				<div class="topics">
+					<article class="topic"><div class="topic-icon">◌</div><h3>Entenderme</h3><p>Identifica lo que estás sintiendo y ponle palabras sin exigirte respuestas rápidas.</p></article>
+					<article class="topic"><div class="topic-icon">⌁</div><h3>Regularme</h3><p>Herramientas sencillas para volver al cuerpo cuando la mente va demasiado deprisa.</p></article>
+					<article class="topic"><div class="topic-icon">♡</div><h3>Acompañarme</h3><p>Aprende a pedir apoyo y a construir redes que puedan sostenerte de verdad.</p></article>
+				</div>
+			</div>
+		</section>
+
+		<section id="septiembre" class="calendar-section">
+			<div class="shell calendar-layout">
+				<div>
+					<p class="eyebrow">Agenda emocional</p>
+					<h2>Septiembre también puede ser un comienzo.</h2>
+					<p class="calendar-intro">Marca una fecha, abre una conversación o regálate un momento de cuidado. Las acciones pequeñas también cuentan.</p>
+					<div class="calendar-note"><b>Nota:</b><span>Estas fechas invitan a informarnos y acompañarnos; no sustituyen atención profesional.</span></div>
+				</div>
+				<div class="calendar" aria-label="Calendario de septiembre de 2026">
+					<div class="calendar-top"><h3>Septiembre 2026</h3><span>mes 09 / 12</span></div>
+					<div class="weekdays"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+					<div class="days">
+						<span class="day muted">31</span><button class="day" data-date="1 de septiembre">1</button><button class="day" data-date="2 de septiembre">2</button><button class="day" data-date="3 de septiembre">3</button><button class="day" data-date="4 de septiembre">4</button><button class="day" data-date="5 de septiembre">5</button><button class="day" data-date="6 de septiembre">6</button>
+						<button class="day" data-date="7 de septiembre">7</button><button class="day" data-date="8 de septiembre">8</button><button class="day marked" data-date="10 de septiembre">9</button><button class="day marked" data-date="10 de septiembre">10</button><button class="day" data-date="11 de septiembre">11</button><button class="day" data-date="12 de septiembre">12</button><button class="day" data-date="13 de septiembre">13</button>
+						<button class="day" data-date="14 de septiembre">14</button><button class="day" data-date="15 de septiembre">15</button><button class="day" data-date="16 de septiembre">16</button><button class="day" data-date="17 de septiembre">17</button><button class="day" data-date="18 de septiembre">18</button><button class="day" data-date="19 de septiembre">19</button><button class="day marked" data-date="21 de septiembre">20</button>
+						<button class="day marked active" data-date="21 de septiembre">21</button><button class="day" data-date="22 de septiembre">22</button><button class="day" data-date="23 de septiembre">23</button><button class="day" data-date="24 de septiembre">24</button><button class="day" data-date="25 de septiembre">25</button><button class="day" data-date="26 de septiembre">26</button><button class="day" data-date="27 de septiembre">27</button>
+						<button class="day" data-date="28 de septiembre">28</button><button class="day marked" data-date="29 de septiembre">29</button><button class="day" data-date="30 de septiembre">30</button><span class="day muted">1</span><span class="day muted">2</span><span class="day muted">3</span><span class="day muted">4</span>
+					</div>
+					<div class="date-detail" id="date-detail"><strong>21 de septiembre · Día Internacional de la Paz</strong><span>Una invitación a cultivar conversaciones más amables, contigo y con los demás.</span></div>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<div class="shell">
+				<div class="section-heading"><h2>Lecturas para este momento.</h2><a class="text-link" href="#recursos">Ver todas</a></div>
+				<div class="articles">
+					<article class="article"><span class="article-tag">Cuerpo y mente · 6 min</span><h3>Cuando descansar se siente imposible: empezar por bajar un cambio.</h3><p>Una guía breve para reconocer el cansancio antes de que se convierta en una deuda contigo.</p><span class="article-arrow">↗</span></article>
+					<article class="article"><span class="article-tag">Límites · 4 min</span><h3>Decir “hoy no puedo” también es cuidarte.</h3><p>Pequeñas frases para proteger tu energía sin dejar de conectar.</p><span class="article-arrow">↗</span></article>
+					<article class="article"><span class="article-tag">Ansiedad · 5 min</span><h3>Volver al presente cuando todo parece urgente.</h3><p>Tres anclas para salir del piloto automático.</p><span class="article-arrow">↗</span></article>
+				</div>
+			</div>
+		</section>
+
+		<section id="apoyo">
+			<div class="shell">
+				<div class="support">
+					<div><p class="eyebrow">Si lo necesitas ahora</p><h2>No tienes que sostenerlo a solas.</h2><p>Si estás en peligro o piensas en hacerte daño, busca ayuda inmediata en los servicios de emergencia de tu país o acude a urgencias.</p><a class="button" href="#recursos">Ver recursos de apoyo</a></div>
+					<div class="support-list" id="recursos"><div class="support-item"><b>Línea de ayuda emocional</b><span>Disponible 24/7 ↗</span></div><div class="support-item"><b>Orientación profesional</b><span>Encontrar apoyo ↗</span></div><div class="support-item"><b>Hablar con alguien cercano</b><span>Guía rápida ↗</span></div></div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<div class="shell"><footer><div class="footer-inner"><span>© 2026 pausa · Información para acompañarte, no para diagnosticarte.</span><span>Privacidad · Contacto</span></div></footer></div>
+
+	<script>
+		const menuButton = document.querySelector('.menu-button');
+		const nav = document.querySelector('#main-nav');
+		const dateDetail = document.querySelector('#date-detail');
+		const dateMessages = {
+			'10 de septiembre': 'Día Mundial para la Prevención del Suicidio · Informarnos también es una forma de cuidar.',
+			'21 de septiembre': 'Día Internacional de la Paz · Una invitación a cultivar conversaciones más amables, contigo y con los demás.',
+			'29 de septiembre': 'Día Mundial del Corazón · Cuidar el cuerpo y la salud emocional forma parte del mismo gesto.'
+		};
+
+		menuButton.addEventListener('click', () => {
+			const isOpen = nav.classList.toggle('open');
+			menuButton.setAttribute('aria-expanded', isOpen);
+		});
+
+		document.querySelectorAll('.day[data-date]').forEach((day) => {
+			day.addEventListener('click', () => {
+				document.querySelector('.day.active')?.classList.remove('active');
+				day.classList.add('active');
+				const date = day.dataset.date;
+				const message = dateMessages[date] || 'Un buen día para hacer una pausa breve y preguntarte qué necesitas hoy.';
+				dateDetail.innerHTML = `<strong>${date}</strong><span>${message}</span>`;
+			});
+		});
+
+		document.querySelectorAll('#main-nav a').forEach((link) => {
+			link.addEventListener('click', () => {
+				nav.classList.remove('open');
+				menuButton.setAttribute('aria-expanded', 'false');
+			});
+		});
+	</script>
+</body>
+</html>
