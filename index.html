@@ -173,6 +173,11 @@
 		.support-list { display: grid; gap: 10px; }
 		.support-item { display: flex; align-items: center; justify-content: space-between; padding: 17px 19px; border-radius: 8px; background: var(--white); font-size: 14px; }
 		.support-item span { color: var(--muted); font-size: 12px; }
+		.partners { margin-top: 18px; padding: 24px 26px; border: 1px solid var(--line); border-radius: 12px; background: var(--white); text-align: center; }
+		.partners-label { margin: 0 0 14px; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+		.partners-list { display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; }
+		.partner { display: grid; place-items: center; width: 280px; height: 120px; padding: 10px 20px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+		.partner img { display: block; width: 100%; max-height: 94px; object-fit: contain; }
 		footer { padding: 30px 0 42px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
 		.footer-inner { display: flex; justify-content: space-between; gap: 20px; }
 
@@ -229,6 +234,8 @@
 			.chat-form { align-items: stretch; flex-direction: column; }
 			.chat-form .button { width: 100%; }
 			.support .button { width: 100%; min-height: 48px; }
+			.partners { padding: 20px 16px; }
+			.partner { width: min(100%, 280px); height: 108px; }
 			footer { font-size: 11px; }
 		}
 	</style>
@@ -368,6 +375,13 @@
 				<div class="support">
 					<div><p class="eyebrow">Si lo necesitas ahora</p><h2>No tienes que sostenerlo a solas.</h2><p>Si estás en peligro o piensas en hacerte daño, busca ayuda inmediata en los servicios de emergencia de tu país o acude a urgencias.</p><a class="button" href="#recursos">Ver recursos de apoyo</a></div>
 					<div class="support-list" id="recursos"><div class="support-item"><b>Línea de ayuda emocional</b><span>Disponible 24/7 ↗</span></div><div class="support-item"><b>Orientación profesional</b><span>Encontrar apoyo ↗</span></div><div class="support-item"><b>Hablar con alguien cercano</b><span>Guía rápida ↗</span></div></div>
+				</div>
+				<div class="partners" aria-label="Aliados de apoyo">
+					<p class="partners-label">Contamos con el apoyo de</p>
+					<div class="partners-list">
+						<div class="partner"><img src="WhatsApp%20Image%202026-09-20%20at%207.41.00%20PM.jpeg" alt="Logo de Colmédica"></div>
+						<div class="partner"><img src="WhatsApp%20Image%202026-09-20%20at%207.41.18%20PM.jpeg" alt="Logo de Versania"></div>
+					</div>
 				</div>
 			</div>
 		</section>
